@@ -1,6 +1,7 @@
 
 from keras.models import Sequential
 from keras.layers import Dense
+from keras.layers import Flatten
 from keras.layers import GlobalAveragePooling2D
 from keras.layers import Dropout
 import numpy as np
@@ -48,7 +49,7 @@ base_model = ResNet50(weights='imagenet', include_top=False, input_shape=(224, 2
 model = Sequential()
 model.add(base_model)
 model.add(GlobalAveragePooling2D())  # ResNet çıkışını düzleştirin
-model.add(Dense(1, activation='sigmoid'))  # Tek nöronlu çıkış katmanı
+model.add(Flatten())
 
 # ResNet50 ağırlıklarını dondurun
 for layer in base_model.layers:

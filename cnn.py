@@ -5,30 +5,23 @@ from keras.layers import MaxPooling2D
 from keras.layers import Flatten
 from keras.layers import Dense
 
-# ilkleme
 classifier = Sequential()
 
-# Adım 1 - Convolution
 classifier.add(Convolution2D(32, 3, 3, input_shape = (64, 64, 3), activation = 'relu'))
 
-# Adım 2 - Pooling
 classifier.add(MaxPooling2D(pool_size = (2, 2)))
 
-# 2. convolution katmanı
 classifier.add(Convolution2D(32, 3, 3, activation = 'relu'))
 classifier.add(MaxPooling2D(pool_size = (2, 2)))
 
-# Adım 3 - Flattening
 classifier.add(Flatten())
 
-# Adım 4 - YSA
 classifier.add(Dense(128, activation = 'relu'))
-classifier.add(Dense(1, activation = 'sigmoid'))
 
-# CNN
+classifier.add(Flatten())
+
 classifier.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
 
-# CNN 
 from keras.preprocessing.image import ImageDataGenerator
 
 
